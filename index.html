@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Peliculas rapiditas y piratitas.com</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+  <!-- Barra Superior -->
+  <div class="navbar">
+    <h1 class="logo">Peliculas rapiditas y piratitas.com</h1>
+
+    <div class="perfil-contenedor">
+      <div class="perfil-boton" onclick="toggleMenu()">
+        <img src="perfil.jpg" alt="Foto de Perfil" class="foto-perfil">
+        <span>Mi Cuenta</span>
+      </div>
+
+      <!-- Menú Desplegable (Perfil y Ajustes) -->
+      <div class="menu-desplegable" id="miMenu">
+        <p><b>Usuario:</b> Sofia</p>
+        <hr>
+        <a href="#">Perfil</a>
+        <a href="#">Ajustes</a>
+        <a href="#">Cerrar Sesión</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección Principal: Video Tráiler -->
+  <div class="hero">
+    <video autoplay muted loop class="video-trailer">
+      <source src="trailer.mp4" type="video/mp4">
+      Tu navegador no soporta el video.
+    </video>
+    <div class="hero-texto">
+      <h2>Shrek</h2>
+      <button onclick="mostrarSinopsis('Shrek', 'Sigue la increible aventura de Shrek el ogro que rescatara a una princesa ', 'fondo película 1.jpg')">Ver detalles</button>
+    </div>
+  </div>
+
+  <!-- Sección de Películas con Carrusel / Slider -->
+  <div class="catalogo">
+    <h2>Películas</h2>
+
+    <div class="slider-contenedor">
+      <button class="flecha" onclick="moverSlider(-250)">❮</button>
+
+      <div class="slider" id="carrusel">
+        <img src="película1.jpg" alt="Película 1" onclick="mostrarSinopsis('Película 1', 'Los mejores superheroes unidos en una misma pelicula', 'fondo película 1.jpg')">
+        <img src="película2.jpg" alt="Película 2" onclick="mostrarSinopsis('Película 2', 'Parte de 2 de los superheroes que salvan la tierra destruyendo una oarte en el proceso.', 'fondo película 2.jpg')">
+        <img src="película3.jpg" alt="Película 3" onclick="mostrarSinopsis('Película 3', 'No hace falta decribir la pelicula simplemente es Goku.', 'fondo película 3.jpg')">
+        <img src="película4.jpg" alt="Película 4" onclick="mostrarSinopsis('Película 4', 'Carreras, Drama, y excelentes personajes.', 'fondo película 4.jpg')">
+        <img src="película5.jpg" alt="Película 5" onclick="mostrarSinopsis('Película 5', 'Una pelicula que sigue la fantastica aventura de Coraline uns niña que se muda a una casa nueva sin saber lo que pasara.', 'fondo película 5.jpg')">
+        <img src="película6.jpg" alt="Película 6" onclick="mostrarSinopsis('Película 6', 'La mejor pelicula de romance que veras.', 'fondo película 4.jpg')">
+       
+      </div>
+      
+
+      <button class="flecha" onclick="moverSlider(250)">❯</button>
+    </div>
+  </div>
+
+  <!-- Cuadro / Ventana de Sinopsis (Modal) -->
+  <div class="cuadro-sinopsis" id="cuadroInfo">
+    <div class="contenido-sinopsis" id="fondoCuadro">
+      <button class="cerrar" onclick="cerrarSinopsis()">X</button>
+      <h2 id="tituloPeli">Título</h2>
+      <p id="textoSinopsis">Texto de la sinopsis...</p>
+    </div>
+  </div>
+
+  <script>
+    // Mostrar/ocultar menú de perfil
+    function toggleMenu() {
+      var menu = document.getElementById("miMenu");
+      if (menu.style.display === "block") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "block";
+      }
+    }
+
+    // Mover el carrusel a la izquierda o derecha
+    function moverSlider(desplazamiento) {
+      document.getElementById("carrusel").scrollBy({
+        left: desplazamiento,
+        behavior: 'smooth'
+      });
+    }
+
+    // Mostrar el cuadro de la sinopsis con imagen de fondo
+    function mostrarSinopsis(titulo, sinopsis, imagenFondo) {
+      document.getElementById("tituloPeli").innerText = titulo;
+      document.getElementById("textoSinopsis").innerText = sinopsis;
+      
+      var cuadro = document.getElementById("fondoCuadro");
+      cuadro.style.backgroundImage = "url('" + imagenFondo + "')";
+      
+      document.getElementById("cuadroInfo").style.display = "flex";
+    }
+
+    // Cerrar el cuadro de la sinopsis
+    function cerrarSinopsis() {
+      document.getElementById("cuadroInfo").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
